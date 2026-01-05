@@ -1,7 +1,5 @@
 # demanual-ai
 
-This project was created with [Better-T-Stack](https://github.com/AmanVarshney01/create-better-t-stack), a modern TypeScript stack that combines React, TanStack Router, and more.
-
 ## Features
 
 - **TypeScript** - For type safety and improved developer experience
@@ -34,6 +32,15 @@ demanual-ai/
 ├── apps/
 │   ├── web/         # Frontend application (React + TanStack Router)
 ```
+
+## Routes
+
+| Route                  | Description                                              |
+| ---------------------- | -------------------------------------------------------- |
+| `/`                    | Main workflow editor page with drag-and-drop node canvas |
+| `/login`               | User login page                                          |
+| `/signup`              | User registration page                                   |
+| `/auth/reset-password` | Password reset page                                      |
 
 ## Available Scripts
 

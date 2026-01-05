@@ -24,21 +24,74 @@
       "!**/.alchemy",
       "!**/.svelte-kit",
       "!**/wrangler.jsonc",
-      "!**/.source",
-      "!**/convex/_generated"
+      "!**/.source"
     ]
   },
   "formatter": {
     "enabled": true,
-    "indentStyle": "tab"
+    "indentStyle": "space",
+    "indentWidth": 2
   },
-  "assist": { "actions": { "source": { "organizeImports": "on" } } },
+  "assist": {
+    "actions": {
+      "source": {
+        "organizeImports": {
+          "level": "on",
+          "options": {
+            "groups": [
+              ["react", "react/**", "elysia", "elysia/**", "bun", "bun/**"],
+              ":BLANK_LINE:",
+              [":NODE:"],
+              ":BLANK_LINE:",
+              [":PACKAGE:"],
+              ":BLANK_LINE:",
+              [":PACKAGE_WITH_PROTOCOL:"],
+              ":BLANK_LINE:",
+              ["@/**", "src/**", "app/**"],
+              ":BLANK_LINE:",
+              [":PATH:"],
+              ":BLANK_LINE:"
+            ]
+          }
+        }
+      }
+    }
+  },
   "linter": {
     "enabled": true,
     "rules": {
       "recommended": true,
       "correctness": {
-        "useExhaustiveDependencies": "info"
+        "useExhaustiveDependencies": "info",
+        "noUnusedVariables": "off",
+        "noUnusedFunctionParameters": "off",
+        "noUnusedImports": "off",
+        "noUndeclaredVariables": "off",
+        "noUnusedPrivateClassMembers": "off",
+        "useHookAtTopLevel": "warn",
+        "noChildrenProp": "off"
+      },
+      "a11y": {
+        "useSemanticElements": "off",
+        "useFocusableInteractive": "off",
+        "useKeyWithClickEvents": "off",
+        "noRedundantRoles": "off",
+        "useAriaPropsForRole": "off"
+      },
+      "security": {
+        "noDangerouslySetInnerHtml": "off"
+      },
+      "suspicious": {
+        "noDoubleEquals": "warn",
+        "noArrayIndexKey": "off",
+        "noExplicitAny": "off",
+        "noImplicitAnyLet": "off",
+        "noConfusingVoidType": "off"
+      },
+      "complexity": {
+        "noForEach": "off",
+        "useLiteralKeys": "off",
+        "noExcessiveCognitiveComplexity": "warn"
       },
       "nursery": {
         "useSortedClasses": {
@@ -65,9 +118,11 @@
   },
   "javascript": {
     "formatter": {
-      "quoteStyle": "double"
+      "quoteStyle": "single",
+      "jsxQuoteStyle": "single"
     }
   },
+
   "css": {
     "parser": {
       "tailwindDirectives": true

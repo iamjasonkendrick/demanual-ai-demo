@@ -1,0 +1,80 @@
+'use client';
+
+import { useEffect, useState } from 'react';
+
+import { MoonIcon, SunIcon } from 'lucide-react';
+import { useTheme } from 'next-themes';
+
+import { cn } from '@/lib/utils';
+
+interface ThemeToggleProps {
+  className?: string;
+}
+
+export function ThemeToggle({ className }: ThemeToggleProps) {
+  const { resolvedTheme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return <div className={cn('h-8 w-16', className)} />;
+  }
+  const isDark = resolvedTheme === 'dark';
+
+  return (
+    <div
+      className={cn(
+        'flex h-8 w-16 cursor-pointer rounded-full p-1 transition-all duration-300',
+        isDark
+          ? 'border border-zinc-800 bg-zinc-950'
+          : 'border border-zinc-200 bg-white',
+        className,
+      )}
+      onClick={() => setTheme(isDark ? 'light' : 'dark')}
+      role='button'
+      tabIndex={0}
+    >
+      <div className='flex w-full items-center justify-between'>
+        <div
+          className={cn(
+            'flex h-6 w-6 items-center justify-center rounded-full transition-transform duration-300',
+            isDark
+              ? 'translate-x-0 transform bg-zinc-800'
+              : 'translate-x-8 transform bg-zinc-200',
+          )}
+        >
+          {isDark ? (
+            <MoonIcon
+              size={16}
+              color='currentColor'
+              strokeWidth={2.25}
+              className='fill-current/30'
+            />
+          ) : (
+            <SunIcon
+              size={16}
+              color='currentColor'
+              strokeWidth={2.25}
+              className='fill-current/30'
+            />
+          )}
+        </div>
+        <div
+          className={cn(
+            'flex h-6 w-6 items-center justify-center rounded-full transition-transform duration-300',
+            isDark ? 'bg-transparent' : '-translate-x-8 transform',
+          )}
+        >
+          {isDark ? (
+            <SunIcon size={16} color='currentColor' strokeWidth={2.25} />
+          ) : (
+            <MoonIcon size={16} color='currentColor' strokeWidth={2.25} />
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}

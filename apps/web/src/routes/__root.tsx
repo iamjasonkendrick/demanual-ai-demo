@@ -1,30 +1,27 @@
-import { HeadContent, Outlet, createRootRouteWithContext } from "@tanstack/react-router";
-import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
+import { createRootRouteWithContext, Outlet } from '@tanstack/react-router';
+import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
 
-import Header from "@/components/header";
-import { ThemeProvider } from "@/components/theme-provider";
-import { Toaster } from "@/components/ui/sonner";
+import { ThemeProvider } from '@/components/theme-provider';
+import { Toaster } from '@/components/ui/sonner';
 
-import "../index.css";
+import '../index.css';
 
-export interface RouterAppContext {}
-
-export const Route = createRootRouteWithContext<RouterAppContext>()({
+export const Route = createRootRouteWithContext()({
   component: RootComponent,
   head: () => ({
     meta: [
       {
-        title: "demanual-ai",
+        title: 'demanual-ai',
       },
       {
-        name: "description",
-        content: "demanual-ai is a web application",
+        name: 'description',
+        content: 'demanual-ai',
       },
     ],
     links: [
       {
-        rel: "icon",
-        href: "/favicon.ico",
+        rel: 'icon',
+        href: '/favicon.ico',
       },
     ],
   }),
@@ -33,20 +30,18 @@ export const Route = createRootRouteWithContext<RouterAppContext>()({
 function RootComponent() {
   return (
     <>
-      <HeadContent />
       <ThemeProvider
-        attribute="class"
-        defaultTheme="dark"
+        attribute='class'
+        defaultTheme='system'
         disableTransitionOnChange
-        storageKey="vite-ui-theme"
+        storageKey='demanual-ai-ui-theme'
       >
-        <div className="grid grid-rows-[auto_1fr] h-svh">
-          <Header />
+        <div className='grid h-svh grid-rows-[auto_1fr] font-outfit'>
           <Outlet />
         </div>
         <Toaster richColors />
       </ThemeProvider>
-      <TanStackRouterDevtools position="bottom-left" />
+      <TanStackRouterDevtools position='bottom-left' />
     </>
   );
 }
